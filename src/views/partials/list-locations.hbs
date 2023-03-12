@@ -1,0 +1,49 @@
+<h1 style="font-size:40px; color:rgb(7, 58, 7);"> Current Weather</h1>
+
+<div id="ww_30eecad81556" v='1.3' loc='auto' a='{"t":"responsive","lang":"en","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"5","cl_odd":"#FFFFFF17"}'>
+  <a href="https://weatherwidget.org/android-app/" id="ww_30eecad81556_u" target="_blank">https://weatherwidget.org/android-app/</a></div>
+  <script async src="https://app1.weatherwidget.org/js/?id=ww_30eecad81556"></script>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Date visited</th>
+      <th>Visit details</th>
+      <th>Pictures</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each list.locations}}
+      <tr>
+        <td>
+          {{location}}
+        </td>
+        <td>
+          {{latitude}}
+        </td>
+        <td>
+          {{longitude}}
+        </td>
+        <td>
+          {{date}}
+        </td>
+        <td>
+          {{details}}
+        </td>
+        <td>
+          {{ pictures }}
+        </td>
+        <td>
+          <a href="/list/{{../list._id}}/deletelocation/{{_id}}" class="ui icon button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
