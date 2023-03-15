@@ -1,4 +1,4 @@
-export const serviceUrl = "http://localhost:3000";
+export const serviceUrl = "https://mywildatlanticway2.onrender.com";
 
 export const maggie = {
   firstName: "Maggie",
