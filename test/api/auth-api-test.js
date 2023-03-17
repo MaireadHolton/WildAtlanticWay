@@ -1,26 +1,26 @@
 import { assert } from "chai";
 import { WAWService } from "./waw-service.js";
 import { decodeToken } from "../../src/api/jwt-utils.js";
-import { maggie } from "../fixtures.js";
+import { maggie, maggieCredentials } from "../fixtures.js";
 
 suite("Authentication API tests", async () => {
   setup(async () => {
     WAWService.clearAuth();
     await WAWService.createUser(maggie);
-    await WAWService.authenticate(maggie);
+    await WAWService.authenticate(maggieCredentials);
     await WAWService.deleteAllUsers();
   });
 
   test("authenticate", async () => {
     const returnedUser = await WAWService.createUser(maggie);
-    const response = await WAWService.authenticate(maggie);
+    const response = await WAWService.authenticate(maggieCredentials);
     assert(response.success);
     assert.isDefined(response.token);
   });
 
   test("verify Token", async () => {
     const returnedUser = await WAWService.createUser(maggie);
-    const response = await WAWService.authenticate(maggie);
+    const response = await WAWService.authenticate(maggieCredentials);
 
     const userInfo = decodeToken(response.token);
     assert.equal(userInfo.email, returnedUser.email);
