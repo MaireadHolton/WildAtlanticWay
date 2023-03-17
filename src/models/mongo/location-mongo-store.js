@@ -45,7 +45,6 @@ export const locationMongoStore = {
     location.longitude = updatedLocation.longitude;
     location.date = updatedLocation.date;
     location.detail = updatedLocation.detail;
-    location.pictures = updatedLocation.pictures;
     await location.save();
   },
 };

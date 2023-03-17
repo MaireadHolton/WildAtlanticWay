@@ -39,5 +39,14 @@ export const listMongoStore = {
 
   async deleteAllLists() {
     await List.deleteMany({});
-  }
+  },
+
+  async updateList(updatedList) {
+    const list = await List.findOne({ _id: updatedList._id });
+    list.title = updatedList.title;
+    list.img = updatedList.img;
+    await list.save();
+  },
 };
+
+

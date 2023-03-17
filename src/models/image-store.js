@@ -19,12 +19,12 @@ export const imageStore = {
   },
 
   uploadImage: async function(imagefile) {
-    writeFileSync("./public/images/temp.img", imagefile);
-    const response = await cloudinary.v2.uploader.upload("./public/images/temp.img");
+    writeFileSync("./images/kinsale.jpg", imagefile);
+    const response = await cloudinary.uploader.upload("./images/temp.img");
     return response.url;
   },
 
   deleteImage: async function(img) {
-    await cloudinary.v2.uploader.destroy(img, {});
+    await cloudinary.uploader.destroy(img, {});
   }
 };
