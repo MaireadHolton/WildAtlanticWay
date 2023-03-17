@@ -44,7 +44,6 @@ export const glengarriff =
     "longitude": 9.55,
     "date": "August 2022",
     "details": "overcast, went to Garnish Island",
-    "pictures": ".public/images/garnish.jpg"
   };
 
 export const munster = {
@@ -69,23 +68,20 @@ export const testLocations = [
     "latitude": 51.77,
     "longitude": -10.54,
     "date": "July 2021",
-    "details": "great weather, went swimming",
-    "pictures": ".public/images/skellig.jpg"
+    "details": "great weather, went swimming"
   },
   {
     "location": "Dingle Harbour",
     "latitude": 52.08,
     "longitude": -10.16,
     "date": "July 2021",
-    "details": "took a boat trip",
-    "pictures": ".public/images/dingle.jpg"
+    "details": "took a boat trip"
   },
   {
     "location": "Ross Castle",
     "latitude": 52.04,
     "longitude": 9.53,
     "date": "July 2022",
-    "details": "saw some deer",
-    "pictures": ".public/images/castle.jpg"
+    "details": "saw some deer"
   }
 ];
