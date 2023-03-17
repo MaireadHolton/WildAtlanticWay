@@ -25,9 +25,9 @@ export const webRoutes = [
   { method: "GET", path: "/list/{id}", config: listController.index },
   { method: "POST", path: "/list/{id}/addlocation", config: listController.addLocation },
   { method: "GET", path: "/list/{id}/deletelocation/{locationid}", config: listController.deleteLocation },
+  { method: "POST", path: "/list/{id}/uploadimage", config: listController.uploadImage },
 
   { method: "GET", path: "/location/{id}/editlocation/{locationid}", config: locationController.index },
-  { method: "POST", path: "/location/{id}/updatelocation/{locationid}", config: locationController.update },
-  //{ method: "POST", path: "/location/{id}/uploadimage/{locationid}", config: locationController.uploadImage },
+  { method: "POST", path: "/location/{id}/updatelocation/{locationid}", config: locationController.update }
 
 ];
