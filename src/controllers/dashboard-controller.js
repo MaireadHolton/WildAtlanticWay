@@ -2,6 +2,7 @@ import { db } from "../models/db.js";
 import { ListSpec } from "../models/joi-schemas.js";
 
 export const dashboardController = {
+  // method to display the dashboard of the logged in user
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
@@ -15,6 +16,7 @@ export const dashboardController = {
     },
   },
 
+  // method to add a new user defined list under a users account
   addList: {
     validate: {
       payload: ListSpec,
@@ -34,6 +36,7 @@ export const dashboardController = {
     },
   },
 
+  // method to delete a list under a users account
   deleteList: {
     handler: async function (request, h) {
       const list = await db.listStore.getListById(request.params.id);

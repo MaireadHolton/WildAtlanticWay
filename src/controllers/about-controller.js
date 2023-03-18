@@ -1,3 +1,4 @@
+// controller to set the content of the about-view
 export const aboutController = {
     index: {
       handler: function (request, h) {

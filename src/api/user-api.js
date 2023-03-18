@@ -5,6 +5,7 @@ import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
 export const userApi = {  
+  // function to find all users
   find: {
     auth: {
       strategy: "jwt",
@@ -23,6 +24,7 @@ export const userApi = {
     response: { schema : UserArray , failAction: validationError },
   },
 
+  // function to find a single user
   findOne: {
     auth: {
       strategy: "jwt",
@@ -45,6 +47,7 @@ export const userApi = {
     response: { schema: UserSpecPlus, failAction: validationError },
   },
 
+   // function to create a user
   create: {
     auth: false,
     handler: async function (request, h) {
@@ -65,6 +68,7 @@ export const userApi = {
     response: { schema: UserSpecPlus, failAction: validationError },
   },
 
+  // function to delete all users
   deleteAll: {
     auth: {
       strategy: "jwt",
@@ -82,6 +86,7 @@ export const userApi = {
     notes: "All userApi removed from myWildAtlanticWay",
   },
 
+  // function to authenticate a user
   authenticate: {
     auth: false,
     handler: async function (request, h) {

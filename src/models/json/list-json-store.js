@@ -6,12 +6,15 @@ import { locationJsonStore } from "./location-json-store.js";
 const db = new Low(new JSONFile("./src/models/json/lists.json"));
 db.data = { lists: [] };
 
+
 export const listJsonStore = {
+  // model to return all lists from the database
   async getAllLists() {
     await db.read();
     return db.data.lists;
   },
 
+  // model for adding list to the database
   async addList(list) {
     await db.read();
     list._id = v4();
@@ -20,6 +23,7 @@ export const listJsonStore = {
     return list;
   },
 
+  // model for finding a list in the database by id
   async getListById(id) {
     await db.read();
     let list1 = db.data.lists.find((list) => list._id === id);
@@ -31,11 +35,13 @@ export const listJsonStore = {
     return list1;
   },
 
+ // model for getting a users lists from the database by user id 
   async getUserLists(userid) {
     await db.read();
     return db.data.lists.filter((list) => list.userid === userid);
   },
 
+  // model for deleting a list from the database
   async deleteListById(id) {
     await db.read();
     const index = db.data.lists.findIndex((list) => list._id === id);
@@ -43,6 +49,7 @@ export const listJsonStore = {
     await db.write();
   },
 
+  // model for deleting all lists in the database
   async deleteAllLists() {
     db.data.lists = [];
     await db.write();

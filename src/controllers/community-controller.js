@@ -1,3 +1,4 @@
+// controller to set the content of the community-view
 export const communityController = {
     index: {
       handler: function (request, h) {

@@ -4,6 +4,7 @@ import { db } from "../models/db.js";
 import { validationError } from "./logger.js";
 
 export const listApi = {
+  // function for finding all of the user defined lists on a users dashboard
   find: {
     auth: {strategy: "jwt",},
     handler: async function (request, h) {
@@ -21,6 +22,7 @@ export const listApi = {
   },
 
   findOne: {
+    // function for finding a single user defined list on a users dashboard
     auth: {strategy: "jwt",},
     async handler(request) {
         try {
@@ -41,6 +43,7 @@ export const listApi = {
   },
 
   create: {
+    // function for creating a user defined list on a users account
     auth: {strategy: "jwt",},
     handler: async function (request, h) {
         try {
@@ -62,6 +65,7 @@ export const listApi = {
   },
 
   deleteOne: {
+    // function for deleting a single user defined list on a users account
     auth: {strategy: "jwt",},
     handler: async function (request, h) {
         try {
@@ -81,6 +85,7 @@ export const listApi = {
   },
 
   deleteAll: {
+    // function for deleting all user defined lists on a users account
     auth: {strategy: "jwt",},
     handler: async function (request, h) {
         try {

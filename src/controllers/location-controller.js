@@ -2,6 +2,7 @@ import { LocationSpec } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
 
 export const locationController = {
+  // method to display the locations inside a list
   index: {
     handler: async function (request, h) {
       const list = await db.listStore.getListById(request.params.id);
@@ -15,6 +16,7 @@ export const locationController = {
     },
   },
 
+  // method for updating a location 
   update: {
     validate: {
       payload: LocationSpec,

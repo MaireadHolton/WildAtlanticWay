@@ -3,6 +3,7 @@ import { LocationSpec } from "../models/joi-schemas.js";
 import { imageStore } from "../models/image-store.js";
 
 export const listController = {
+  // method for displaying each list
   index: {
     handler: async function (request, h) {
       const list = await db.listStore.getListById(request.params.id);
@@ -15,6 +16,7 @@ export const listController = {
   },
 
   addLocation: {
+    // method for creating a new loaction entry inside a list
     validate: {
       payload: LocationSpec,
       options: { abortEarly: false },
@@ -37,6 +39,7 @@ export const listController = {
   },
 
   deleteLocation: {
+    /// method for deleting a liocation inside a list
     handler: async function(request, h) {
       const list = await db.listStore.getListById(request.params.id);
       await db.locationStore.deleteLocation(request.params.locationid);
@@ -45,6 +48,7 @@ export const listController = {
   },
 
   uploadImage: {
+    // method for uploading an image inside a list folder
     handler: async function (request, h) {
       try {
         const list = await db.listStore.getListById(request.params.id);

@@ -4,6 +4,7 @@ import { db } from "../models/db.js";
 
 const result = dotenv.config();
 
+// function to create a unique jwt token for each user:
 export function createToken(user) {
   const payload = {
     id: user._id,
@@ -16,6 +17,7 @@ export function createToken(user) {
   return jwt.sign(payload, process.env.cookie_password, options);
 }
 
+// function to decode the token so user can be identified:
 export function decodeToken(token) {
   const userInfo = {};
   try {
@@ -28,6 +30,7 @@ export function decodeToken(token) {
   return userInfo;
 }
 
+// function to validate a user:
 export async function validate(decoded, request) {
   const user = await db.userStore.getUserById(decoded.id);
   if (!user) {

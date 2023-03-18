@@ -9,12 +9,13 @@ import { userMongoStore } from "./mongo/user-mongo-store.js";
 import { listMongoStore } from "./mongo/list-mongo-store.js";
 import { locationMongoStore } from "./mongo/location-mongo-store.js";
 
-
+// method to ezport information to the database
 export const db = {
   userStore: null,
   listStore: null,
   locationStore: null,
 
+  // method to initalise the data store type
   init(storeType) {
     switch (storeType) {
       case "json":

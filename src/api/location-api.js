@@ -4,23 +4,28 @@ import { IdSpec, LocationSpec, LocationSpecPlus, LocationArraySpec } from "../mo
 import { validationError } from "./logger.js";
 
 export const locationApi = {
+  // function for finding all locations under a users account
   find: {
     auth: {
+      // define jwt as the authentication strategy
       strategy: "jwt",
     },
     handler: async function (request, h) {try {
       const locations = await db.locationStore.getAllLocations();
       return locations;
     } catch (err) {
+      // use boom to display a database error
       return Boom.serverUnavailable("Database Error");
     }
     },
+    // set an api tag to show the LocationArraySpec from the joi-schema
     tags: ["api"],
     response: { schema: LocationArraySpec, failAction: validationError },
     description: "Get all locationApi",
     notes: "Returns all locationApi",
   },
 
+   // function for finding a single location under a users account
   findOne: {
     auth: {
       strategy: "jwt",
@@ -43,6 +48,7 @@ export const locationApi = {
     response: { schema: LocationSpecPlus, failAction: validationError },
   },
 
+   // function for creating a location under a users account
   create: {
     auth: {
       strategy: "jwt",
@@ -65,6 +71,7 @@ export const locationApi = {
     response: { schema: LocationSpecPlus, failAction: validationError },
   },
 
+   // function for deleting all locations under a users account
   deleteAll: {
     auth: {
       strategy: "jwt",
@@ -81,6 +88,7 @@ export const locationApi = {
     description: "Delete all locationApi",
   },
 
+   // function for deleting a single location under a users account
   deleteOne: {
     auth: {
       strategy: "jwt",
