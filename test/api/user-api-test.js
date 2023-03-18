@@ -21,12 +21,15 @@ suite("User API tests", () => {
   });
   teardown(async () => {});
 
+  // test a user is created
 test("create a user", async () => {
   const newUser = await WAWService.createUser(maggie);
   assertSubset(maggie, newUser);
   assert.isDefined(newUser._id);
   });
 
+
+  // test all users deleted
 test("delete all users", async () => {
   let returnedUsers = await WAWService.getAllUsers();
   assert.equal(returnedUsers.length, 4);
@@ -37,11 +40,14 @@ test("delete all users", async () => {
   assert.equal(returnedUsers.length, 1);
 });
 
+
+// test to find a user
 test("get a user", async () => {
   const returnedUser = await WAWService.getUser(users[0]._id);
   assert.deepEqual(users[0], returnedUser);
   });
 
+// test to see that the system gives an error if searching for a non-existant user
   test("get a user - bad id", async () => {
     try {
       const returnedUser = await WAWService.getUser("1234");
@@ -52,6 +58,7 @@ test("get a user", async () => {
     }
   });
 
+  // test to see that the system gives an error if searching for a deleted user
   test("get a user - deleted user", async () => {
     await WAWService.deleteAllUsers();
     await WAWService.createUser(maggie);

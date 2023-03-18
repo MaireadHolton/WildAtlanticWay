@@ -18,6 +18,7 @@ suite("Location Model tests", () => {
     }
   });
 
+  // test a location is created
   test("create single location", async () => {
     const corkList = await db.listStore.addList(cork);
     const location = await db.locationStore.addLocation(corkList._id, glengarriff)
@@ -25,11 +26,13 @@ suite("Location Model tests", () => {
     assertSubset (glengarriff, location);
   });
 
+  // test multiple locations created
   test("get multiple locations", async () => {
     const locations = await db.listStore.getListById(munsterList._id);
     assert.equal(testLocations.length, testLocations.length)
   });
 
+  // test all locations deleted
   test("delete all locations", async () => {
     const locations = await db.locationStore.getAllLocations();
     assert.equal(testLocations.length, locations.length);
@@ -38,6 +41,7 @@ suite("Location Model tests", () => {
     assert.equal(0, newLocations.length);
   });
 
+  // test to find a location by id
   test("get a location - success", async () => {
     const corkList = await db.listStore.addList(cork);
     const location = await db.locationStore.addLocation(corkList._id, glengarriff)
@@ -45,6 +49,7 @@ suite("Location Model tests", () => {
     assertSubset (glengarriff, newLocation);
   });
 
+  // test to delete a single location
   test("delete One Location - success", async () => {
     await db.locationStore.deleteLocation(testLocations[0]._id);
     const locations = await db.locationStore.getAllLocations();
@@ -53,11 +58,13 @@ suite("Location Model tests", () => {
     assert.isNull(deletedLocation);
   });
 
+  // test a non-existant location is not found
   test("get a location - bad params", async () => {
     assert.isNull(await db.locationStore.getLocationById(""));
     assert.isNull(await db.locationStore.getLocationById());
   });
 
+  // test a non-existant location is not deleted
   test("delete one location - fail", async () => {
     await db.locationStore.deleteLocation("bad-id");
     const locations = await db.locationStore.getAllLocations();

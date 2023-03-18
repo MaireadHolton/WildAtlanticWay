@@ -14,11 +14,13 @@ suite("User Model tests", () => {
     }
   });
 
+  // test a user is created
   test("create a user", async () => {
     const newUser = await db.userStore.addUser(maggie);
     assertSubset(maggie, newUser);
   });
 
+  // test all users deleted
   test("delete all users", async () => {
     let returnedUsers = await db.userStore.getAllUsers();
     assert.equal(returnedUsers.length, 3);
@@ -27,6 +29,7 @@ suite("User Model tests", () => {
     assert.equal(returnedUsers.length, 0);
   });
 
+  // test a user can be found by email or id
   test("get a user - success", async () => {
     const user = await db.userStore.addUser(maggie);
     const returnedUser1 = await db.userStore.getUserById(user._id);
@@ -35,6 +38,7 @@ suite("User Model tests", () => {
     assert.deepEqual(user, returnedUser2);
   });
 
+  // test a user is deleted
   test("delete One User - success", async () => {
     await db.userStore.deleteUserById(testUsers[0]._id);
     const returnedUsers = await db.userStore.getAllUsers();
@@ -43,12 +47,14 @@ suite("User Model tests", () => {
     assert.isNull(deletedUser);
   });
 
+  // test a non-exitant user is not found
   test("get a user - bad params", async () => {
     assert.isNull(await db.userStore.getUserByEmail(""));
     assert.isNull(await db.userStore.getUserById(""));
     assert.isNull(await db.userStore.getUserById());
   });
 
+  // test a non-existant user is not deleted
   test("delete One User - fail", async () => {
     await db.userStore.deleteUserById("bad-id");
     const allUsers = await db.userStore.getAllUsers();

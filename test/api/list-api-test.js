@@ -23,12 +23,14 @@ suite("List API tests", () => {
 
   teardown(async () => {});
 
+  // test to check if a list is created
   test("create list", async () => {
     const returnedList = await WAWService.createList(cork);
     assert.isNotNull(returnedList);
     assertSubset(cork, returnedList);
   });
 
+  // test to check a list is deleted 
   test("Delete a list", async () => {
     for (let i = 0; i < testLists.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -44,6 +46,7 @@ suite("List API tests", () => {
     assert.equal(returnedLists.length, 0);
   });
 
+  // test to check mulitple lists can be created
   test("create multiple lists", async () => {
     for (let i = 0; i < testLists.length; i += 1) {
         testLists[i].userid = user._id;
@@ -57,6 +60,8 @@ suite("List API tests", () => {
       assert.equal(returnedLists.length, 0);
     });
   
+
+    // test to check what happens if a non-existant list is deleted
     test("remove non-existant list", async () => {
       try {
         const response = await WAWService.deleteList("not an id");

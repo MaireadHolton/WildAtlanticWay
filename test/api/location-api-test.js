@@ -22,11 +22,13 @@ suite("Location API tests", () => {
 
   teardown(async () => {});
 
+  // test to see if a location is created
   test("create location", async () => {
       const returnedLocation = await WAWService.createLocation(munster._id, glengarriff);
       assertSubset(glengarriff, returnedLocation);
   });
 
+  // test to check that mutiple locations can be created
   test("create Multiple locations", async () => {
     for (let i = 0; i < testLocations.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -41,6 +43,7 @@ suite("Location API tests", () => {
     }
   });
 
+  // test to check that a location is deleted
   test("Delete Location", async () => {
     for (let i = 0; i < testLocations.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -56,6 +59,7 @@ suite("Location API tests", () => {
     assert.equal(returnedLocations.length, 0);
   });
 
+  // test to make sure the locations array doesn't cause an error when there are no locations
   test("test denormalised list", async () => {
     for (let i = 0; i < testLocations.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop

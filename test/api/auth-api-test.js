@@ -11,6 +11,7 @@ suite("Authentication API tests", async () => {
     await WAWService.deleteAllUsers();
   });
 
+  // test to create and authenticate a new user
   test("authenticate", async () => {
     const returnedUser = await WAWService.createUser(maggie);
     const response = await WAWService.authenticate(maggieCredentials);
@@ -18,6 +19,7 @@ suite("Authentication API tests", async () => {
     assert.isDefined(response.token);
   });
 
+  // test to verify the jwt token for a new user
   test("verify Token", async () => {
     const returnedUser = await WAWService.createUser(maggie);
     const response = await WAWService.authenticate(maggieCredentials);
@@ -27,6 +29,8 @@ suite("Authentication API tests", async () => {
     assert.equal(userInfo.userId, returnedUser._id);
   });
 
+
+  // test to check that authentication is removed when a user is deleted
   test("check Unauthorized", async () => {
     WAWService.clearAuth();
     try {
